@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="198" pageHeight="425" columnWidth="158" leftMargin="20" rightMargin="20" topMargin="33" bottomMargin="33">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="KodeTransaksi(transaksi)" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     transaksi.`KodeTransaksi` AS transaksi_KodeTransaksi,
+     transaksi.`TglPemesanan` AS transaksi_TglPemesanan,
+     transaksi.`TglPengambilan` AS transaksi_TglPengambilan,
+     transaksi.`MetodePembayaran` AS transaksi_MetodePembayaran,
+     transaksi.`Bayar` AS transaksi_Bayar,
+     transaksi.`Sisa` AS transaksi_Sisa,
+     transaksi.`StatusPembayaran` AS transaksi_StatusPembayaran,
+     transaksi.`KodePelanggan` AS transaksi_KodePelanggan,
+     transaksi.`KodeAdmin` AS transaksi_KodeAdmin,
+     transaksi.`TglTransaksi` AS transaksi_TglTransaksi,
+     transaksi.`Total` AS transaksi_Total,
+     detail_transaksi.`KodeTransaksi` AS detail_transaksi_KodeTransaksi,
+     detail_transaksi.`KodeProduk` AS detail_transaksi_KodeProduk,
+     detail_transaksi.`ProdukOrder` AS detail_transaksi_ProdukOrder,
+     detail_transaksi.`Harga_Satuan` AS detail_transaksi_Harga_Satuan,
+     detail_transaksi.`JumlahOrder` AS detail_transaksi_JumlahOrder,
+     detail_transaksi.`TotalDetailOrder` AS detail_transaksi_TotalDetailOrder,
+     pelanggan.`KodePelanggan` AS pelanggan_KodePelanggan,
+     pelanggan.`NamaPelanggan` AS pelanggan_NamaPelanggan
+FROM
+     `transaksi` transaksi INNER JOIN `detail_transaksi` detail_transaksi ON transaksi.`KodeTransaksi` = detail_transaksi.`KodeTransaksi`
+     INNER JOIN `pelanggan` pelanggan ON transaksi.`KodePelanggan` = pelanggan.`KodePelanggan`
+WHERE
+     transaksi.`KodeTransaksi` = $P{KodeTransaksi(transaksi)}]]>
+	</queryString>
+	<field name="transaksi_KodeTransaksi" class="java.lang.String"/>
+	<field name="transaksi_TglPemesanan" class="java.sql.Date"/>
+	<field name="transaksi_TglPengambilan" class="java.sql.Date"/>
+	<field name="transaksi_MetodePembayaran" class="java.lang.String"/>
+	<field name="transaksi_Bayar" class="java.lang.Integer"/>
+	<field name="transaksi_Sisa" class="java.lang.Integer"/>
+	<field name="transaksi_StatusPembayaran" class="java.lang.String"/>
+	<field name="transaksi_KodePelanggan" class="java.lang.String"/>
+	<field name="transaksi_KodeAdmin" class="java.lang.String"/>
+	<field name="transaksi_TglTransaksi" class="java.sql.Date"/>
+	<field name="transaksi_Total" class="java.lang.Integer"/>
+	<field name="detail_transaksi_KodeTransaksi" class="java.lang.String"/>
+	<field name="detail_transaksi_KodeProduk" class="java.lang.String"/>
+	<field name="detail_transaksi_ProdukOrder" class="java.lang.String"/>
+	<field name="detail_transaksi_Harga_Satuan" class="java.lang.Integer"/>
+	<field name="detail_transaksi_JumlahOrder" class="java.lang.Integer"/>
+	<field name="detail_transaksi_TotalDetailOrder" class="java.lang.Integer"/>
+	<field name="pelanggan_KodePelanggan" class="java.lang.String"/>
+	<field name="pelanggan_NamaPelanggan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<image>
+				<reportElement x="17" y="10" width="135" height="36"/>
+				<imageExpression><![CDATA["C:\\Users\\Muhammad Heriyanto\\Documents\\ProjectApp\\ely-bakery-low-resolution-logo-color-on-transparent-background.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="49" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Nama Pemesan :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="10" width="49" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pelanggan_NamaPelanggan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="45" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Tgl Transaksi :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="50" width="66" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_TglTransaksi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="105" y="0" width="53" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Tgl Pemesanan :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="10" width="80" height="9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_TglPemesanan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="105" y="19" width="53" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Tgl Pengambilan :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="75" y="29" width="83" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_TglPengambilan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="49" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Admin :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="74" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_KodeAdmin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="17" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="9" width="27" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="9" width="21" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="9" width="20" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="9" width="27" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="29" width="158" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="8" width="158" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="28" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_KodeProduk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="1" width="27" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_ProdukOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="1" width="21" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_Harga_Satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="1" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_JumlahOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="1" width="27" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_TotalDetailOrder}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="131" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="158" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="132" y="1" width="26" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="1" width="37" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total sub :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="21" width="37" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bayar :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="21" width="26" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_Bayar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="41" width="37" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kurang Bayar :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="41" width="26" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_Sisa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="1" width="65" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status Pembayaran :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="21" width="38" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_StatusPembayaran}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<componentElement>
+					<reportElement x="0" y="78" width="158" height="23"/>
+					<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false">
+						<jr:codeExpression><![CDATA[$F{transaksi_KodeTransaksi}]]></jr:codeExpression>
+					</jr:barbecue>
+				</componentElement>
+			</elementGroup>
+			<textField>
+				<reportElement x="37" y="91" width="88" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaksi_KodeTransaksi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
